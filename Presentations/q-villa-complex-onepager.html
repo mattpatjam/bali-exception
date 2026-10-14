@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Confidential Read — Private Compound Brief | Bali Exception</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark:   #1A1613;
+    --gold:   #B8953F;
+    --gold-l: #D4AE5A;
+    --cream:  #F5F0E6;
+    --warm:   #EDE6D6;
+    --mid:    #6B5C46;
+    --border: rgba(184,149,63,0.30);
+  }
+
+  body {
+    background: #d9d5c9;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 20px auto;
+    background: var(--cream);
+    color: var(--dark);
+    padding: 10mm 16mm;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.20);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 5mm;
+    margin-bottom: 4mm;
+  }
+  .doc-header img { height: 34px; opacity: 0.92; }
+  .doc-header .tag {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .title-block h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.08;
+    margin-bottom: 2mm;
+  }
+  .title-block h1 em { font-style: italic; color: var(--gold); }
+  .brief-recap {
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--mid);
+    margin-bottom: 0;
+  }
+  .brief-recap b { color: var(--dark); font-weight: 500; }
+
+  /* ── CREDIBILITY HOOK ───────────────────────────────────── */
+  .hook {
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--mid);
+    margin-bottom: 4mm;
+    padding-bottom: 4mm;
+    border-bottom: 1px solid var(--border);
+  }
+  .hook b { color: var(--dark); font-weight: 500; }
+
+  /* ── SECTION LABEL ──────────────────────────────────────── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3mm;
+  }
+
+  /* ── PITFALLS GRID ──────────────────────────────────────── */
+  .pitfalls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm 6mm;
+    margin-bottom: 4mm;
+  }
+  .pitfall {
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--mid);
+  }
+  .pitfall b { color: var(--dark); font-weight: 500; }
+
+  /* ── RECOMMENDATION CARDS ─────────────────────────────────── */
+  .reco-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 4mm;
+  }
+  .reco-card {
+    background: var(--warm);
+    border-left: 2px solid var(--gold);
+    padding: 3mm 4mm;
+  }
+  .reco-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--dark);
+    margin-bottom: 1mm;
+  }
+  .reco-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6mm; }
+  .reco-card ul li {
+    font-size: 9.3px;
+    line-height: 1.35;
+    color: var(--mid);
+    padding-left: 3mm;
+    position: relative;
+  }
+  .reco-card ul li::before { content: '–'; position: absolute; left: 0; color: var(--gold); }
+  .reco-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    color: var(--dark);
+    margin-top: 1.5mm;
+  }
+
+  /* ── CHALLENGE BOX ─────────────────────────────────────────── */
+  .challenge-box {
+    background: var(--warm);
+    border-left: 2px solid var(--gold);
+    padding: 3mm 4mm;
+    margin-bottom: 4mm;
+    font-size: 9.3px;
+    line-height: 1.4;
+    color: var(--mid);
+  }
+  .challenge-box b { color: var(--dark); font-weight: 500; }
+  .challenge-box ul { list-style: none; margin-top: 1.2mm; display: flex; flex-direction: column; gap: 0.5mm; }
+  .challenge-box ul li { padding-left: 3mm; position: relative; }
+  .challenge-box ul li::before { content: '–'; position: absolute; left: 0; color: var(--gold); }
+
+  /* ── PROCESS STRIP ──────────────────────────────────────── */
+  .process {
+    background: var(--dark);
+    margin: 4mm -16mm 0;
+    padding: 4mm 16mm;
+    display: flex;
+    justify-content: space-between;
+    gap: 2mm;
+  }
+  .process .section-label { color: var(--gold-l); margin-bottom: 2.5mm; }
+  .p-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+    padding-right: 2mm;
+  }
+  .p-step .p-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--gold-l);
+  }
+  .p-step .p-text {
+    font-size: 8.7px;
+    line-height: 1.35;
+    color: rgba(245,240,230,0.72);
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .doc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 4mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--border);
+  }
+  .doc-footer .close-note {
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--mid);
+    max-width: 105mm;
+  }
+  .doc-footer .close-note b { color: var(--dark); font-weight: 500; }
+  .doc-footer .meta {
+    font-size: 9px;
+    color: var(--mid);
+    text-align: right;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="doc-header">
+    <div class="title-block">
+      <h1>A Straight Read on <em>Your Compound</em></h1>
+      <div class="brief-recap">
+        <b style="color:var(--gold);">His objective:</b> <b>120–150 are</b> · elevated, west-facing · freehold · tourism-zoned · off-market · <b>350–430M IDR/are</b>
+      </div>
+    </div>
+    <div style="text-align:right;">
+      <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" />
+      <div class="tag" style="margin-top:2mm;">Confidential · Prepared for Mr. Q</div>
+    </div>
+  </div>
+
+  <div class="hook">
+    <b>About myself.</b> Five years sourcing and closing land and villa transactions across Bali, Lombok, Nusa Penida and Nusa Lembongan for Bali Exception, leasehold and freehold, working directly with our in-house legal team on PT&nbsp;PMA structures, permits and the handover into construction. I work in partnership with brokers across Bali to find the best opportunities for my clients, one of the reasons for my success today. A few villas and land sourcing I've closed personally are linked at the bottom.
+  </div>
+
+  <div class="section-label">Understanding Q's project</div>
+  <div class="pitfalls">
+    <div class="pitfall"><b>Ocean views, non-negotiable.</b> Elevation decides this, more than the address.</div>
+    <div class="pitfall"><b>Beachfront is a plus, not a requirement.</b> Good to have, not the deciding factor.</div>
+    <div class="pitfall"><b>One compound, connected underground.</b> Staff and service tunnels link the villas below ground, not just shared grounds.</div>
+    <div class="pitfall"><b>One family compound, not one villa.</b> A master villa for family, three to four smaller villas for friends.</div>
+    <div class="pitfall"><b>A full amenity compound.</b> Padel court, spa and gym alongside the villas.</div>
+    <div class="pitfall"><b>A hybrid model.</b> Personal use two to three months a year, rented out the rest to cover the investment.</div>
+    <div class="pitfall"><b>Built for decades, not seasons.</b> Poured concrete / ICF-style walls, not brick infill, meant to outlast Bali's standard and pass to his children.</div>
+    <div class="pitfall"><b>Bringing his own equipment.</b> Construction machinery self-imported from China, drawing on his manufacturing background.</div>
+  </div>
+
+  <div class="section-label">My recommendations</div>
+  <div class="reco-cols">
+    <div class="reco-card">
+      <h3>Tabanan</h3>
+      <ul>
+        <li>Beachfront land available</li>
+        <li>Black sand beaches</li>
+        <li>Better access to water</li>
+      </ul>
+    </div>
+    <div class="reco-card">
+      <h3>Bukit</h3>
+      <ul>
+        <li>Elevated, with ocean views from multiple angles</li>
+        <li>White sand beaches</li>
+        <li>More of a surfer vibe, closer to social life and restaurants</li>
+        <li>Harder, lower-quality water access, being higher up</li>
+        <li>A more hyped-up area</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <b>Key challenges:</b>
+    <ul>
+      <li><b>Self-imported machinery</b> (cost and knowledge on how to use). No local spare-parts chain for Chinese-branded equipment.</li>
+      <li><b>The right workforce</b> to commit to your quality.</li>
+      <li><b>Underground tunnels</b> and Bali's wet season and humidity.</li>
+      <li><b>ICF / poured-concrete walls.</b> Bali sits in a seismic zone with inconsistent batching-plant quality.</li>
+      <li><b>Your price band, tested.</b> At 350–430M/are, ocean-view land in Uluwatu runs closer to 600M/are, Tabanan beachfront closer to 800M–1B/are. Land exists at your number, but you'll need someone with the right contacts to find it.</li>
+    </ul>
+  </div>
+
+  <div class="process">
+    <div style="width:100%;">
+      <div class="section-label" style="display:flex; justify-content:space-between;">
+        <span>The buying process, start to finish</span>
+        <span style="color:rgba(245,240,230,0.5); letter-spacing:0.08em;">Est. timeline: 18 to 24* months</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; gap:1.5mm;">
+        <div class="p-step"><span class="p-num">1</span><span class="p-text">Sign a buyer's agent agreement, define scope</span></div>
+        <div class="p-step"><span class="p-num">2</span><span class="p-text">Find the plot, negotiate</span></div>
+        <div class="p-step"><span class="p-num">3</span><span class="p-text">Legal partners for due diligence</span></div>
+        <div class="p-step"><span class="p-num">4</span><span class="p-text">Architect and construction partners, negotiate</span></div>
+        <div class="p-step"><span class="p-num">5</span><span class="p-text">Sign the deed of purchase</span></div>
+        <div class="p-step"><span class="p-num">6</span><span class="p-text">Import / manpower authorization, if needed</span></div>
+        <div class="p-step"><span class="p-num">7</span><span class="p-text">Find the right management partner</span></div>
+        <div class="p-step"><span class="p-num">8</span><span class="p-text">Break ground, through to handover</span></div>
+      </div>
+      <div style="font-size:7.8px; color:rgba(245,240,230,0.5); margin-top:2mm;">*Based on high end construction, depends of construction technology</div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="close-note">
+      <b>Villas I've closed personally:</b> <a href="https://windsorhouse.pixieset.com/windsorhouse/" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--border);">Windsor House ↗</a> (listed $2M, closed $1.36M) · <a href="https://elementbali.com/" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--border);">Element Bali ↗</a> (sourced and negotiated a 5,000m² plot, central Canggu, for this branded development)
+      <br><br>I know you're not here to browse listings. You've got several projects ahead of you and you're looking for one advisor to partner with long term, someone you can hand a real mandate to and trust to be straight with you. If we commit to that as a true partnership, I will commit to source the best plot of land and help you within my expertise and the scope we define.
+    </div>
+    <div class="meta">
+      Bali Exception Real Estate<br>
+      Matthieu Jammers, Senior Sales Manager<br>
+      July 2026
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

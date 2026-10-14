@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COO Proposal, Bali Exception</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --white:        #F5F0E6;
+    --off-white:    #EDE6D6;
+    --card:         #FFFFFF;
+    --accent:       #B8953F;
+    --accent-lt:    #D4AE5A;
+    --accent-pale:  #EFE7D5;
+    --dark:         #1A1613;
+    --text:         #1A1613;
+    --text-dim:     #6B5C46;
+    --text-muted:   #A0906F;
+    --border:       rgba(184,149,63,0.30);
+    --shadow:       0 2px 16px rgba(26,22,19,0.08);
+    --font-d:       'Cormorant Garamond', Georgia, serif;
+    --font-b:       'Jost', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #d0cfc9;
+    font-family: var(--font-b);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  @page { size: A4; margin: 0; }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 2.5cm 2.8cm;
+    margin: 20px auto;
+    background: var(--white);
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .last-page { page-break-after: auto; }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+  }
+
+  .label {
+    font-family: var(--font-b);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+  .label--light { color: rgba(245,240,230,0.6); }
+  h1, h2 { font-family: var(--font-d); font-weight: 400; line-height: 1.08; color: var(--dark); }
+  h1 { font-size: 50px; }
+  h2 { font-size: 34px; }
+  h3 { font-family: var(--font-b); font-weight: 500; font-size: 15px; line-height: 1.3; color: var(--dark); }
+  p  { color: var(--text-dim); font-size: 13.5px; line-height: 1.8; }
+  em { font-style: italic; color: var(--accent); }
+
+  .gold-rule { width: 40px; height: 1px; background: var(--accent); margin: 1.1rem 0 1.5rem; }
+
+  /* cover */
+  .cover-center {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 297mm; text-align: center; padding: 2.5cm 2.8cm; margin: -2.5cm -2.8cm;
+  }
+  .cover-center .logo { height: 60px; width: auto; margin: 0 auto 2.5rem; }
+  .cover-center h1 { margin-bottom: 1.1rem; }
+  .cover-center .sub { font-size: 12.5px; color: var(--text-muted); margin-top: 0.6rem; letter-spacing: 0.02em; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(184,149,63,0.10); border: 1px solid var(--border); border-radius: 20px;
+    padding: 0.3rem 0.9rem; margin-bottom: 1.6rem;
+  }
+  .badge span { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+  .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* stat row */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.4rem 1.1rem; text-align: center; box-shadow: var(--shadow);
+  }
+  .stat-card .num { font-family: var(--font-d); font-size: 40px; font-weight: 500; color: var(--dark); line-height: 1; display: block; margin-bottom: 0.35rem; }
+  .stat-card.hi .num { color: var(--accent); }
+  .stat-card .lbl { font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .stat-card .note { font-size: 10px; color: var(--text-muted); margin-top: 0.4rem; font-style: italic; }
+
+  /* scope grid */
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 2.2rem; margin-top: 1.9rem; }
+  .scope-item { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .scope-num { font-family: var(--font-d); font-size: 21px; color: var(--accent); flex-shrink: 0; min-width: 26px; line-height: 1.2; }
+  .scope-item h3 { font-size: 13.5px; margin-bottom: 0.25rem; }
+  .scope-item p { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+  /* two-col cards */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.4rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.6rem 1.4rem; box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+  .card-tag {
+    display: inline-block; background: var(--accent-pale); color: var(--accent);
+    font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    border-radius: 3px; padding: 0.2rem 0.55rem; margin-bottom: 0.9rem;
+  }
+  .card h3 { font-size: 14px; margin-bottom: 0.6rem; }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .card ul li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .card ul li::before { content: '—'; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+
+  /* tables */
+  .plain-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 1rem 0 0; }
+  .plain-table th { text-align: left; font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); padding: 0 0.7rem 0.6rem 0; border-bottom: 1px solid var(--border); }
+  .plain-table td { padding: 0.85rem 0.7rem 0.85rem 0; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.55; }
+  .plain-table td:first-child, .plain-table th:first-child { padding-left: 0; }
+  .plain-table tr:last-child td { border-bottom: none; }
+  .plain-table .num-cell { font-family: var(--font-d); font-size: 17px; color: var(--dark); white-space: nowrap; }
+  .plain-table .yr-cell { font-family: var(--font-d); font-size: 18px; color: var(--dark); font-weight: 500; white-space: nowrap; }
+  .plain-table.tight td { padding-top: 0.55rem; padding-bottom: 0.55rem; }
+
+  /* highlight box */
+  .hi-box { background: var(--accent-pale); border: 1px solid var(--border); border-radius: 6px; padding: 1.3rem 1.5rem; margin-top: 1.3rem; }
+  .hi-box .hi-label { font-size: 9px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.6rem; }
+  .hi-box p { margin: 0; font-size: 12.5px; }
+  .hi-box p + p { margin-top: 0.5rem; }
+
+  /* cta page */
+  .page.cta { background: var(--dark); }
+  .page.cta .label { color: rgba(245,240,230,0.55); }
+  .page.cta h2 { color: #F5F0E6; }
+  .page.cta em { color: var(--accent-lt); }
+  .page.cta p { color: rgba(245,240,230,0.65); }
+  .page.cta .gold-rule { background: var(--accent); }
+  .solves-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1.3rem 0 1.8rem; }
+  .solves-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 13px; color: rgba(245,240,230,0.75); line-height: 1.55; }
+  .solves-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent-lt); flex-shrink: 0; margin-top: 7px; }
+  .steps { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.6rem; }
+  .step { display: flex; align-items: flex-start; gap: 0.9rem; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: rgba(184,149,63,0.18); border: 1px solid rgba(212,174,90,0.4); display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-size: 14px; color: var(--accent-lt); flex-shrink: 0; margin-top: 1px; }
+  .step-text { color: rgba(245,240,230,0.8); font-size: 13px; line-height: 1.6; }
+  .step-text strong { color: #F5F0E6; font-weight: 500; }
+  .cta-note { font-size: 11.5px; color: rgba(245,240,230,0.4); border-top: 1px solid rgba(245,240,230,0.15); padding-top: 1.1rem; line-height: 1.6; }
+
+  /* footer */
+  .page-footer {
+    position: absolute; bottom: 1.4cm; left: 2.8cm; right: 2.8cm;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border); padding-top: 0.55rem;
+  }
+  .page-footer .pf-logo { height: 22px; width: auto; opacity: 0.8; }
+  .page-footer .pf-meta { font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<div class="page" style="background: var(--accent-pale); padding: 0;">
+  <div class="cover-center">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="logo">
+    <div class="badge"><span class="badge-dot"></span><span>A Partnership Proposal</span></div>
+    <h1>COO,<br><em>Bali Exception</em></h1>
+    <p class="sub">Prepared for Typhaine &nbsp;·&nbsp; August 2026 &nbsp;·&nbsp; Confidential</p>
+  </div>
+</div>
+
+<!-- PAGE 2 — THE PROBLEM -->
+<div class="page">
+  <span class="label">The Problem</span>
+  <h2>BE is exposed, <em>the numbers back it up</em></h2>
+  <p style="margin-top: 1.1rem;">FazWaz is expanding aggressively. Bali Home Immo has real digital infrastructure behind it. BE still has no formal training system, new agents learn by shadowing whoever's around, and there's no repeatable process for turning one good salesperson into a second one. None of this is anyone's fault, BE grew fast on relationships and referrals. Relationships alone don't hold up against firms that no longer need them.</p>
+
+  <p style="margin-top: 1rem;">The listing side is diluted too, too many properties on the site, no consistent quality bar, no process for what BE actually agrees to sell. As zoning and licensing rules keep tightening and the market fills with agencies moving volume over quality, an undifferentiated inventory stops being a strength and starts being a liability.</p>
+
+  <table class="plain-table tight" style="margin-top: 1.6rem;">
+    <tr><th>Year</th><th>Total Commission</th><th>Note</th></tr>
+    <tr><td class="yr-cell">2023</td><td class="num-cell">$1.00M</td><td>&nbsp;</td></tr>
+    <tr><td class="yr-cell">2024</td><td class="num-cell">$1.91M</td><td>Prior peak. The jump from 2023 was a one-off, not a trend to extrapolate.</td></tr>
+    <tr><td class="yr-cell">2025</td><td class="num-cell">$1.89M</td><td>Flat against 2024.</td></tr>
+    <tr><td class="yr-cell">2026</td><td class="num-cell">$1.19M</td><td>Pace, annualized from 7 months.</td></tr>
+  </table>
+
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: 0.6rem;">2026's pace, if it holds, is a real step down, worth confirming together rather than treating as fact.</p>
+
+  <div class="hi-box" style="margin-top: 1.3rem;">
+    <span class="hi-label">What's actually missing</span>
+    <p>Not sales talent. The system underneath it, training, process, structure, and a second revenue line beyond one-time commission. That's what the next page proposes to build.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="pf-logo">
+    <span class="pf-meta">Confidential · August 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 3 — THE FIX -->
+<div class="page" style="background: var(--off-white);">
+  <span class="label">The Fix</span>
+  <h2>What closes <em>the gap</em></h2>
+  <p style="margin-top: 0.7rem;">Seven pieces, each aimed directly at what's on the previous page. Not new activity, the same market BE already sells in, run with fewer gaps.</p>
+
+  <div class="scope-grid">
+    <div class="scope-item">
+      <span class="scope-num">01</span>
+      <div><h3>SOPs for the sales team</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">02</span>
+      <div><h3>Training and onboarding systems</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">03</span>
+      <div><h3>Organizational structure and team scalability</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">04</span>
+      <div><h3>Marketing strategy and execution that supports Bali Exception's broader vision and growth</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">05</span>
+      <div><h3>Business development for new entities</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">06</span>
+      <div>
+        <h3>Property management growth program</h3>
+        <p>Agents earn a recurring 10% of BE's management fee on villas they bring under management</p>
+      </div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">07</span>
+      <div><h3>Overseeing the team, and the business, together with Typhaine</h3></div>
+    </div>
+    <div class="scope-item">
+      <span class="scope-num">08</span>
+      <div>
+        <h3>A listing selection process, niching into higher-quality inventory</h3>
+        <p>Fewer, better villas instead of taking on everything that comes in, a real bar for what BE agrees to sell</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hi-box" style="margin-top: 1.6rem;">
+    <span class="hi-label">Why I can build this</span>
+    <p>I've built hiring frameworks, training SOPs, and a scale pipeline from zero before, opening multiple retail locations from a single-site operation. Same mechanics, applied here: structured onboarding instead of shadowing, a repeatable process instead of relying on whoever's free, systemized lead follow-up instead of ad hoc.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="pf-logo">
+    <span class="pf-meta">Confidential · August 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 4 — COMPENSATION & BASELINE -->
+<div class="page">
+  <span class="label">Compensation</span>
+  <h2>A floor, <em>not a ceiling</em></h2>
+  <p style="margin-top: 1rem;">This pays for time that doesn't look like a sale: in the office, training the team, building what's on the previous page, not out on the floor showing villas. The point isn't less production, it's multiplying what the whole team produces instead of just my own. Commission and profit share reward that on top of it.</p>
+
+  <table class="plain-table">
+    <tr><th>Component</th><th>Structure</th></tr>
+    <tr><td style="font-family: var(--font-b); font-weight: 500; color: var(--dark);">Base salary</td><td><span class="num-cell">$70K/year</span> gross, fixed, paid monthly regardless of production. The floor.</td></tr>
+    <tr><td style="font-family: var(--font-b); font-weight: 500; color: var(--dark);">Personal commission</td><td>Standard agent rate on deals closed personally. The salary acts as a draw: threshold is 50% of base salary ($35K/year). Commission below it is already covered, commission above it pays out on top. Example below.</td></tr>
+    <tr><td style="font-family: var(--font-b); font-weight: 500; color: var(--dark);">Profit share</td><td>Tracks whatever percentage of the company I own that year (see next page), applied to Bali Exception's net profit. Cash, paid annually, on top of equity.</td></tr>
+  </table>
+
+  <div class="hi-box">
+    <span class="hi-label">Example, how the threshold works</span>
+    <p>At 12 personal deals/year (~$300K average sale, 5% commission, standard agent rate): $300,000 × 5% × 50% = $7,500/deal, ×12 = $90,000 in personal commission for the year.</p>
+    <p>Threshold is 50% of the $70K salary, $35,000. Since $90K clears $35K, the salary is paid as normal, plus the $55K above threshold, $125K between salary and commission alone. Below threshold, the $70K floor holds, nothing clawed back.</p>
+  </div>
+
+  <div class="hi-box" style="margin-top: 1rem;">
+    <span class="hi-label">2025 net profit baseline (estimate, let's confirm together)</span>
+    <p><strong style="color: var(--dark); font-family: var(--font-d); font-size: 20px; font-weight: 500;">~$558,000</strong> &nbsp; company-side commission ($944,896) plus legal revenue (~$80K), minus overhead (~$467K). Built from Matthieu's own numbers, not yet checked against the books. Used as the profit share basis.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="pf-logo">
+    <span class="pf-meta">Confidential · August 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 5 — EQUITY & NEW ENTITIES -->
+<div class="page" style="background: var(--off-white);">
+  <span class="label">Equity, Earned Not Granted</span>
+  <h2>20% combined, <em>vested over 4 years</em></h2>
+  <p style="margin-top: 0.9rem;">10% from Typhaine, 10% from Raphael. Even vesting, 5% a year, against a named KPI set reviewed jointly each year-end. Not a flat grant on day one. The profit share on the previous page tracks this same percentage each year, it's not a separate number, it's what I actually own, nothing more.</p>
+
+  <div class="hi-box" style="margin-bottom: 1.5rem;">
+    <span class="hi-label">Ownership becomes cash through a buyout</span>
+    <p>Equity vests as a stake in the company, it doesn't pay out on its own, the profit share on the previous page is what does that annually. To turn the stake itself into cash: a put option lets me require Typhaine and Raphael to buy back my vested shares, paid in installments rather than a lump sum, not exercisable before Year 4-5, and priced against a multi-year EBITDA average rather than a single year's snapshot. They hold the mirror right if I leave.</p>
+  </div>
+
+  <table class="plain-table">
+    <tr><th>Year</th><th>Vests</th><th>Delivery Gate</th></tr>
+    <tr><td class="yr-cell">Y1</td><td>5%</td><td>SOPs documented, training framework live, org structure v1 agreed.</td></tr>
+    <tr><td class="yr-cell">Y2</td><td>5%</td><td>Training rolled out to the full team, Lombok open as the second entity, digital and marketing systems live.</td></tr>
+    <tr><td class="yr-cell">Y3</td><td>5%</td><td>Org structure proven at scale across two entities, systems running without me as the bottleneck.</td></tr>
+    <tr><td class="yr-cell">Y4</td><td>5%</td><td>Systems fully embedded as how BE runs, third entity or equivalent.</td></tr>
+  </table>
+
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: 0.6rem;">Each gate is something built and verifiable, not a number exposed to market conditions outside my control. The growth case on the next page is the business argument for why this is worth it, it's not what triggers vesting.</p>
+
+  <div class="hi-box">
+    <span class="hi-label">New entities kept separate</span>
+    <p>Lombok already has its own negotiation in progress. Any future entity gets its own stake when it's actually built, this equity track covers core BE only.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="pf-logo">
+    <span class="pf-meta">Confidential · August 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 6 — THE RETURN -->
+<div class="page">
+  <span class="label">The Return</span>
+  <h2>What this <em>builds toward</em></h2>
+  <p style="margin-top: 1rem;">Fixing what's on page one pays for itself. Here's where steady growth off a real baseline takes commission over four years.</p>
+
+  <table class="plain-table">
+    <tr><th>Year</th><th>Total Commission</th><th>Note</th></tr>
+    <tr><td class="yr-cell">Baseline</td><td class="num-cell">$1.60M</td><td>3-year average, 2023 to 2025, not the exceptional 2024-2025 plateau alone.</td></tr>
+    <tr><td class="yr-cell">Y1</td><td class="num-cell">$1.68M</td><td>+5%.</td></tr>
+    <tr><td class="yr-cell">Y2</td><td class="num-cell">$1.76M</td><td>+5%.</td></tr>
+    <tr><td class="yr-cell">Y3</td><td class="num-cell">$1.85M</td><td>+5%.</td></tr>
+    <tr><td class="yr-cell">Y4</td><td class="num-cell">$1.95M</td><td>+5%. Back to roughly where 2024-2025 peaked, on steady growth this time, not a one-off jump.</td></tr>
+  </table>
+
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: 0.4rem;">Baseline is a 3-year blend, not last year's number. 2024 and 2025 were likely an exceptional two-year window off 2023's $1.00M, not BE's normal run rate. 5% a year from there is deliberately conservative. This is the business case for the fix, separate from what actually triggers vesting on the previous page.</p>
+
+  <div class="hi-box" style="margin-top: 1.3rem;">
+    <span class="hi-label">How we get there, and what's not counted yet</span>
+    <p><strong style="color: var(--dark); font-weight: 500;">Systems.</strong> Training and org structure (scope 01 to 03) cut ramp time. Marketing (scope 04) rebuilds a lead flow that's currently soft.</p>
+    <p><strong style="color: var(--dark); font-weight: 500;">Expansion.</strong> BD for new entities (scope 05), Lombok and whatever comes after, opens revenue in markets core BE doesn't touch today. Kept out of the table above, each new entity carries its own separate equity and economics.</p>
+    <p><strong style="color: var(--dark); font-weight: 500;">Property management.</strong> Scope 06 isn't in the table above either, it's a separate recurring fee that compounds as villas are added, and doesn't reset every January like sales commission does. Portfolio size and fee, still to be set together.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="https://booking.baliexception.com//rentals/datosBroker/bk_baliexception/templates/assets/img/logo.png" alt="Bali Exception" class="pf-logo">
+    <span class="pf-meta">Confidential · August 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 7 — CLOSE / CTA -->
+<div class="page cta last-page">
+  <span class="label label--light">What This Solves</span>
+  <h2>For Bali Exception.</h2>
+  <div class="gold-rule"></div>
+
+  <ul class="solves-list">
+    <li>A real answer to other competitors, not just relationship-based selling</li>
+    <li>A training system that scales past "shadow whoever's around"</li>
+    <li>A tested path to a new office without Typhaine or Raphael running it personally</li>
+    <li>Keeps five years of market knowledge and client relationships inside BE</li>
+  </ul>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Confirm the numbers together.</strong> Overhead, legal revenue, and a real 2026 mid-year figure, this baseline is a starting point, not a final claim.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Agree the details.</strong> Commission threshold, exact KPI targets, the dispute mechanism, and Raphael's involvement.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Confirm in writing by August 31.</strong> The specific numbers above are still open, but I need to know whether this direction works in principle, and by when, to plan the rest of the year properly.</div>
+    </div>
+  </div>
+
+  <p class="cta-note">This document is a starting point for discussion between partners, not a final demand.</p>
+</div>
+
+</body>
+</html>
